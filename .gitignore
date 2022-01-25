@@ -1,0 +1,10 @@
+*.dat
+*.vtk
+*.f5
+*.b8.ugrid
+run.pbs.*
+opt.out
+*.flow
+*.forces
+*.txt
+*.o*
