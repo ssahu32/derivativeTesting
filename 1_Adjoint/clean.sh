@@ -22,4 +22,5 @@ rm -f steady/Flow/tets_hist*
 rm -f steady/Flow/tets.forces
 rm -f steady/Flow/tets.forces_imaginary
 rm -f steady/Adjoint/*
+rm -f output.txt
 #cp ../restart_adjoint/steady/Flow/tets.flow steady/Flow/.

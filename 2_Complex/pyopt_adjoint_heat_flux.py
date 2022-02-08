@@ -22,8 +22,8 @@ limitations under the License.
 
 from __future__ import print_function
 
-#from os import environ
-#environ['CMPLX_MODE'] = "1"
+from os import environ
+environ['CMPLX_MODE'] = "1"
 from pyfuntofem.model  import *
 from pyfuntofem.driver import *
 from pyfuntofem.fun3d_interface import *
@@ -44,7 +44,7 @@ class wedge_adjoint(object):
 
     def __init__(self, analysis_type='aeroelastic'):
         print('start')
-
+        
         self.analysis_type = analysis_type
 
         # cruise conditions
@@ -105,12 +105,12 @@ class wedge_adjoint(object):
         plate.add_variable('structural',Variable('thickness',value=thickness,lower = 0.01, upper = 0.1))
         model.add_body(plate)
 
-        steady = Scenario('steady', group=0, steps=100)
-        steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
+        steady = Scenario('steady',group=0,steps=100)
+        # steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
         temp = Function('temperature',analysis_type='structural') #temperature
         steady.add_function(temp)
 
-        ksfail = Function('ksfailure',analysis_type='structural') 
+        ksfail = Function('ksfailure',analysis_type='structural')
         steady.add_function(ksfail)
 
         lift = Function('cl',analysis_type='aerodynamic')
@@ -123,31 +123,33 @@ class wedge_adjoint(object):
 
         self.model = model
 
-    def total_derivative(self):
+    def total_derivative(self, epsilon=1e-30):
+
+        x = []
+        variables = self.model.get_variables()
+        for i, var in enumerate(variables):
+            if i == 0:
+                x.append(var.value + 1j*epsilon)
+            else:
+                x.append(var.value)
+
+        x = np.array(x)
+        self.model.set_variables(x)
+
         self.driver.solve_forward()
         functions = self.model.get_functions()
         
         for index, func in enumerate(functions):
-            print('Function %d'%(index), func.value)
-
-        self.driver.solve_adjoint()
-
-        grads = self.model.get_function_gradients()
-        
-        variables = self.model.get_variables()
-
-        for i, func in enumerate(functions):
-            for j, var in enumerate(variables):
-                print("Grad ", func.name, "Var: ", var.name, " ", grads[i][j])
+            print('Function %d'%(index), func.value.imag/epsilon)
 
         return 
 
 ################################################################################
-dp = wedge_adjoint(analysis_type='aeroelastic') # 'aeroelastic') # 'aerothermoelastic') # 'aerothermal')
+dp = wedge_adjoint(analysis_type='aeroelastic') # 'aerothermoelastic') # 'aerothermal')
 print('created object')
 
 # print('VERIFICATION TEST')
-# Error = dp.verification_test(epsilon=1e-6)
+# Error = dp.verification_test(epsilon=1e-30)
 # print('FINISHED VERIFICATION TEST')
 
 dp.total_derivative()
