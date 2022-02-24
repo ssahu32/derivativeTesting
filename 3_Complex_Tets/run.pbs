@@ -13,4 +13,4 @@ cd $PBS_O_WORKDIR
 source $HOME/.bashrc
 source $HOME/.profile
 export CMPLX_MODE=1
-time mpiexec_mpt -n 1 python pyopt_adjoint_heat_flux.py 2>&1 > output.txt
+time mpiexec_mpt -n 1 python pyopt_adjoint_heat_flux.py 2>&1 > opt.out

@@ -42,7 +42,7 @@ class wedge_adjoint(object):
     -------------------------------------------------------------------------------
     """
 
-    def __init__(self, analysis_type='aerothermoelastic'):
+    def __init__(self, analysis_type='aerothermal'):
         print('start')
 
         self.analysis_type = analysis_type
@@ -143,7 +143,7 @@ class wedge_adjoint(object):
         return 
 
 ################################################################################
-dp = wedge_adjoint(analysis_type='aerothermoelastic') # 'aeroelastic') # 'aerothermoelastic') # 'aerothermal')
+dp = wedge_adjoint(analysis_type='aerothermal') # 'aeroelastic') # 'aerothermoelastic') # 'aerothermal')
 print('created object')
 
 # print('VERIFICATION TEST')

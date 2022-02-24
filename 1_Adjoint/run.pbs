@@ -2,7 +2,7 @@
 ## Required PBS Directives --------------------------------------
 #PBS -A AFVAW00262F03
 #PBS -q debug
-#PBS -l select=2:ncpus=48:mpiprocs=48
+#PBS -l select=1:ncpus=16:mpiprocs=16
 #PBS -l walltime=01:00:00
 #PBS -j oe
 #
