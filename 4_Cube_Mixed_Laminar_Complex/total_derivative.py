@@ -42,7 +42,7 @@ class wedge_adjoint(object):
     -------------------------------------------------------------------------------
     """
 
-    def __init__(self, analysis_type='aerothermoelastic'):
+    def __init__(self, analysis_type='aeroelastic'):
         print('start')
         
         self.analysis_type = analysis_type
@@ -102,11 +102,11 @@ class wedge_adjoint(object):
         # Build the model
         model = FUNtoFEMmodel('wedge')
         plate = Body('plate', analysis_type=self.analysis_type, group=0,boundary=1)
-        # plate.add_variable('structural',Variable('thickness',value=thickness,lower = 0.01, upper = 0.1))
+        plate.add_variable('structural',Variable('thickness',value=thickness,lower = 0.01, upper = 0.1))
         model.add_body(plate)
 
-        steady = Scenario('steady',group=0,steps=100)
-        steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
+        steady = Scenario('steady',group=0,steps=300)
+        # steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
         temp = Function('temperature',analysis_type='structural') #temperature
         steady.add_function(temp)
 
@@ -145,7 +145,7 @@ class wedge_adjoint(object):
         return 
 
 ################################################################################
-dp = wedge_adjoint(analysis_type='aerothermoelastic') # 'aerothermoelastic') # 'aerothermal')
+dp = wedge_adjoint(analysis_type='aeroelastic') # 'aerothermoelastic') # 'aerothermal')
 print('created object')
 
 # print('VERIFICATION TEST')

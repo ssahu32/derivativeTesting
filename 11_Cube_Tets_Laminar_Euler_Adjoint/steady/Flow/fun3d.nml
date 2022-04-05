@@ -7,7 +7,7 @@
   swap_yz_axes = .true.
 /
 &governing_equations
-  eqn_type      = 'incompressible'
+  eqn_type      = 'compressible'
   viscous_terms = 'inviscid'
 /
 &reference_physical_properties

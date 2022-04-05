@@ -102,11 +102,11 @@ class wedge_adjoint(object):
         # Build the model
         model = FUNtoFEMmodel('wedge')
         plate = Body('plate', analysis_type=self.analysis_type, group=0,boundary=1)
-        # plate.add_variable('structural',Variable('thickness',value=thickness,lower = 0.01, upper = 0.1))
+        plate.add_variable('structural',Variable('thickness',value=thickness,lower = 0.01, upper = 0.1))
         model.add_body(plate)
 
         steady = Scenario('steady',group=0,steps=100)
-        steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
+        # steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
         temp = Function('temperature',analysis_type='structural') #temperature
         steady.add_function(temp)
 
