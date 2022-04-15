@@ -1,0 +1,10 @@
+9             
+1              5000           Inflow
+2              5000           Outflow
+3              4000           Panel1_Fixed
+4              4000           Panel2_Deformed
+5              4000           Panel3_Fixed
+6              6663           Symmetry
+7              5000           Top
+8              6662           Y_left
+9              6662           Y_right
