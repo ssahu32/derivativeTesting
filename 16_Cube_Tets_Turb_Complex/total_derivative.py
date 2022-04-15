@@ -145,7 +145,7 @@ class wedge_adjoint(object):
         return 
 
 ################################################################################
-dp = wedge_adjoint(analysis_type='aerothermal') # 'aerothermoelastic') # 'aerothermal')
+dp = wedge_adjoint(analysis_type='aerothermoelastic') # 'aerothermoelastic') # 'aerothermal')
 print('created object')
 
 # print('VERIFICATION TEST')

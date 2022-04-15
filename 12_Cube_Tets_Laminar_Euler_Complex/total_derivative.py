@@ -42,7 +42,7 @@ class wedge_adjoint(object):
     -------------------------------------------------------------------------------
     """
 
-    def __init__(self, analysis_type='aeroelastic'):
+    def __init__(self, analysis_type='aerothermoelastic'):
         print('start')
         
         self.analysis_type = analysis_type
@@ -106,7 +106,7 @@ class wedge_adjoint(object):
         model.add_body(plate)
 
         steady = Scenario('steady',group=0,steps=100)
-        # steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
+        steady.set_variable('aerodynamic',name='AOA',value=0.0,lower=-15.0,upper=15.0)
         temp = Function('temperature',analysis_type='structural') #temperature
         steady.add_function(temp)
 

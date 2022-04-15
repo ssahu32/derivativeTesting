@@ -23,9 +23,6 @@ flux_limiter            = 'hvenkat'
 smooth_limiter_coeff    = 1.0
 freeze_limiter_iteration = 1
 /
-&turbulent_diffusion_models
-    turbulence_model = 'sa'
-/
 &code_run_control
   restart_write_freq = 1
   restart_read       = 'off'
@@ -52,13 +49,4 @@ freeze_limiter_iteration = 1
 /
 &massoud_output
   funtofem_include_skin_friction = .true.
-/
-&volume_output_variables
-  export_to ='vtk'
-  x = .false.
-  y = .false.
-  z = .false.
-  temperature = .true.
-  mach = .true.
-  p = .true.
 /

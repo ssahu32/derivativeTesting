@@ -8,3 +8,6 @@ opt.out
 *.forces
 *.txt
 *.o*
+*.grid_info
+*.adjoint
+*debug_getgrad*
